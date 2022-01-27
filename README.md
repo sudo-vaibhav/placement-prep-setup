@@ -2,7 +2,7 @@
 
 ## Why This Setup is Kinda Cool
 
-- Devcontainer support which comes with cpp, java and nodejs preinstalled.
+- Devcontainer support which comes with cpp, java and nodejs, python preinstalled.
 - Pre-installed VS-Code extensions which build and run code using the supplied input and output files with one keybinding.
 - Gitignored artifacts for popular languages.
 

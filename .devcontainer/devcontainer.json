@@ -14,7 +14,8 @@
 	"extensions": [
 		"ms-vscode.cpptools",
 		"yaduahuja.code-builder",
-		"redhat.java"
+		"redhat.java",
+		"ms-python.python"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
