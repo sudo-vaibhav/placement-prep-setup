@@ -25,7 +25,6 @@ int main()
     {
         n -= days[i];
         ans = i;
-        // cout << ans << endl;
         i = (i + 1) % 7;
     }
 
