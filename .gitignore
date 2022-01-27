@@ -1,0 +1,9 @@
+*
+!/**/
+!*.*
+!Dockerfile
+!*.cpp
+!*.json
+!.devcontainer
+!.vscode
+*.txt
