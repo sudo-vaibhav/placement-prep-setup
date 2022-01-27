@@ -31,8 +31,8 @@ int main()
 
     cout << ans + 1;
     auto dur = chrono::duration_cast<chrono::microseconds>(end - beg);
-    // cout << endl
-    //      << dur.count() << " milliseconds";
+    cout << endl
+         << dur.count() << " milliseconds";
 
     return 0;
 }

@@ -1,10 +1,10 @@
 {
-    "code-builder.build.inputFilePath": "/workspaces/placement-prep/input.txt",
-    "code-builder.build.outputFilePath": "/workspaces/placement-prep/output.txt",
-    "files.associations": {
-        "istream": "cpp",
-        "iosfwd": "cpp",
-        "ostream": "cpp"
-    },
-    "editor.wordWrap": "off"
+  "code-builder.build.inputFilePath": "/workspaces/placement-prep/input.txt",
+  "code-builder.build.outputFilePath": "/workspaces/placement-prep/output.txt",
+  "files.associations": {
+    "istream": "cpp",
+    "iosfwd": "cpp",
+    "ostream": "cpp"
+  },
+  "editor.wordWrap": "off"
 }
