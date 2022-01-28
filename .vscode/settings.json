@@ -5,7 +5,8 @@
     "istream": "cpp",
     "iosfwd": "cpp",
     "ostream": "cpp",
-    "future": "cpp"
+    "future": "cpp",
+    "iostream": "cpp"
   },
   "editor.wordWrap": "off"
 }

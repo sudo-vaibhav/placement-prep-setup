@@ -76,7 +76,13 @@
 		"int main()",
 		"{",
 		" fast_cin();",
+		" // can run multiple test cases in one shot while debugging locally, codeforces will still only run the code one time",
+		" #ifndef ONLINE_JUDGE",
+    	" for (auto __i = 0; __i < 2; __i++)",
+		" #endif",
+    	" {",
 		" $0",
+		" }",
 		" return 0;",
 		"}"
 		],
