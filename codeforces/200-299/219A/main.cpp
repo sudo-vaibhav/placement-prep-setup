@@ -57,6 +57,41 @@ double eps = 1e-12;
 int main()
 {
     fast_cin();
+    ll k;
+    cin >> k;
+    string s;
+    cin >> s;
+    unordered_map<char, ll> m;
+    for (auto i : s)
+    {
+        m[i]++;
+    }
 
+    auto valid = true;
+    string temp = "";
+    for (auto it = m.begin(); it != m.end(); it++)
+    {
+        if (it->second % k != 0)
+        {
+            valid = false;
+            break;
+        }
+        else
+        {
+            for (auto i = 0; i < it->second / k; i++)
+                temp += it->first;
+        }
+    }
+    if (!valid)
+    {
+        cout << -1;
+    }
+    else
+    {
+        for (auto i = 0; i < k; i++)
+        {
+            cout << temp;
+        }
+    }
     return 0;
 }

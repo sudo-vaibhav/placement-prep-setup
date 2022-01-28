@@ -4,7 +4,8 @@
   "files.associations": {
     "istream": "cpp",
     "iosfwd": "cpp",
-    "ostream": "cpp"
+    "ostream": "cpp",
+    "future": "cpp"
   },
   "editor.wordWrap": "off"
 }
