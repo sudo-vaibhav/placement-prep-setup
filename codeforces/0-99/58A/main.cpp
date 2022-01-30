@@ -73,6 +73,7 @@ int main()
         {
             cout << "NO";
         }
+        cout << endl;
     }
     return 0;
 }
