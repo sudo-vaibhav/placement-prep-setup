@@ -54,21 +54,19 @@ double eps = 1e-12;
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
 
-struct plane
+struct num
 {
-    ll index;
-    ll seats;
-    plane(ll i, ll s)
+    ll idx;
+    ll val;
+    num(ll idx, ll val) : idx(idx), val(val)
     {
-        index = i;
-        seats = s;
     }
 };
 struct comp
 {
-    bool operator()(plane p1, plane p2)
+    bool operator()(num a, num b)
     {
-        return p1.seats > p2.seats;
+        return (a.val * 100000 + a.idx) > (b.val * 100000 + b.idx);
     }
 };
 int main()
@@ -76,44 +74,79 @@ int main()
     fast_cin();
 // can run multiple test cases in one shot while debugging locally, codeforces will still only run the code one time
 #ifndef ONLINE_JUDGE
-    for (auto __i = 0; __i < 2; __i++)
+    for (auto __i = 0; __i < 1; __i++)
 #endif
     {
-        ll n, m, temp;
-        cin >> n >> m;
-
-        priority_queue<ll, vector<ll>, greater<ll>> minheap;
-        priority_queue<ll, vector<ll>> maxheap;
-        for (auto i = 0; i < m; i++)
+        ll n;
+        cin >> n;
+        priority_queue<num, vector<num>, comp> q;
+        ll temp;
+        for (auto i = 0; i < n; i++)
         {
             cin >> temp;
-            minheap.push(temp);
-            maxheap.push(temp);
+            q.push(num(i, temp));
         }
-
-        auto mincost = 0, maxcost = 0;
-        while (n > 0)
+        num *prev = nullptr;
+        ll diff = LONG_LONG_MIN;
+        vector<num> a;
+        stringstream buf;
+        while (!q.empty())
         {
-            auto maxtemp = maxheap.top();
-            auto mintemp = minheap.top();
-            maxheap.pop();
-            minheap.pop();
-            maxcost += maxtemp;
-            mincost += mintemp;
-            maxtemp--;
-            mintemp--;
-            if (maxtemp > 0)
-            {
-                maxheap.push(maxtemp);
-            }
-            if (mintemp > 0)
-            {
-                minheap.push(mintemp);
-            }
-            n--;
+
+            a.push_back(q.top());
+            q.pop();
         }
-        cout << maxcost << " " << mincost;
+        auto count = 0;
+        for (auto i = 0; i < n; i++)
+        {
+            ll j;
+            for (j = i + 1; j < n; j++)
+            {
+                if (a[j].val != a[i].val)
+                {
+                    break;
+                }
+            }
+            if (j - i <= 2)
+            {
+                buf << a[i].val << " " << (a[j - 1].idx - a[i].idx) << endl;
+                count++;
+            }
+            else
+            {
+
+                ll diff = a[i + 1].idx - a[i].idx;
+                bool succ = true;
+                for (auto x = i + 1; x < j; x++)
+                {
+                    if ((a[x].idx - a[x - 1].idx) != diff)
+                    {
+                        succ = false;
+                        break;
+                    }
+                }
+                if (succ)
+                {
+                    buf << a[i].val << " " << (a[i + 1].idx - a[i].idx) << endl;
+                    count++;
+                }
+                else
+                {
+                    // cout << a[i].val<< ;
+                }
+            }
+
+            // dbg(succ);
+            // dbg(i);
+            // dbg(j);
+            // cout << endl;
+            i = j - 1;
+        }
+        cout << count << endl
+             << buf.str();
+#ifndef ONLINE_JUDGE
         cout << endl;
+#endif
     }
     return 0;
 }

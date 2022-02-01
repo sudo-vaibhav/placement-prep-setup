@@ -54,23 +54,6 @@ double eps = 1e-12;
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
 
-struct plane
-{
-    ll index;
-    ll seats;
-    plane(ll i, ll s)
-    {
-        index = i;
-        seats = s;
-    }
-};
-struct comp
-{
-    bool operator()(plane p1, plane p2)
-    {
-        return p1.seats > p2.seats;
-    }
-};
 int main()
 {
     fast_cin();
@@ -79,41 +62,40 @@ int main()
     for (auto __i = 0; __i < 2; __i++)
 #endif
     {
-        ll n, m, temp;
-        cin >> n >> m;
-
-        priority_queue<ll, vector<ll>, greater<ll>> minheap;
-        priority_queue<ll, vector<ll>> maxheap;
-        for (auto i = 0; i < m; i++)
+        ll t, hc, dc, hm, dm, k, w, a;
+        cin >> t;
+        while (t-- > 0)
         {
-            cin >> temp;
-            minheap.push(temp);
-            maxheap.push(temp);
-        }
+            cin >> hc >> dc;
+            cin >> hm >> dm;
+            cin >> k >> w >> a;
 
-        auto mincost = 0, maxcost = 0;
-        while (n > 0)
-        {
-            auto maxtemp = maxheap.top();
-            auto mintemp = minheap.top();
-            maxheap.pop();
-            minheap.pop();
-            maxcost += maxtemp;
-            mincost += mintemp;
-            maxtemp--;
-            mintemp--;
-            if (maxtemp > 0)
+            bool success = false;
+            for (auto shield_exp = 0; shield_exp <= k; shield_exp++)
             {
-                maxheap.push(maxtemp);
+                auto dam_exp = k - shield_exp;
+                auto c_dam = dc + dam_exp * w;
+                auto c_h = hc + shield_exp * a;
+
+                auto c_die_turns = ceil((double)c_h / (double)dm);
+                auto m_die_turns = ceil((double)hm / (double)c_dam);
+                if (c_die_turns >= m_die_turns)
+                {
+                    success = true;
+                    break;
+                }
             }
-            if (mintemp > 0)
+            if (success)
             {
-                minheap.push(mintemp);
+                cout << "YES";
             }
-            n--;
+            else
+            {
+                cout << "NO";
+            }
+            cout << endl;
         }
-        cout << maxcost << " " << mincost;
-        cout << endl;
+        //  cout<<endl;
     }
     return 0;
 }

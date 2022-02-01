@@ -54,23 +54,6 @@ double eps = 1e-12;
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
 
-struct plane
-{
-    ll index;
-    ll seats;
-    plane(ll i, ll s)
-    {
-        index = i;
-        seats = s;
-    }
-};
-struct comp
-{
-    bool operator()(plane p1, plane p2)
-    {
-        return p1.seats > p2.seats;
-    }
-};
 int main()
 {
     fast_cin();
@@ -79,40 +62,27 @@ int main()
     for (auto __i = 0; __i < 2; __i++)
 #endif
     {
-        ll n, m, temp;
+        ll n, m;
         cin >> n >> m;
-
-        priority_queue<ll, vector<ll>, greater<ll>> minheap;
-        priority_queue<ll, vector<ll>> maxheap;
-        for (auto i = 0; i < m; i++)
+        char **c = new char *[n];
+        for (ll i = 0; i < n; i++)
         {
-            cin >> temp;
-            minheap.push(temp);
-            maxheap.push(temp);
-        }
+            c[i] = new char[m];
 
-        auto mincost = 0, maxcost = 0;
-        while (n > 0)
-        {
-            auto maxtemp = maxheap.top();
-            auto mintemp = minheap.top();
-            maxheap.pop();
-            minheap.pop();
-            maxcost += maxtemp;
-            mincost += mintemp;
-            maxtemp--;
-            mintemp--;
-            if (maxtemp > 0)
+            for (ll j = 0; j < m; j++)
             {
-                maxheap.push(maxtemp);
+                cin >> c[i][j];
+                auto ans = ((i + j) & 1) ? 'B' : 'W';
+                if (c[i][j] == '-')
+                {
+                    ans = '-';
+                }
+                c[i][j] = ans;
+                cout << c[i][j];
+                // cout << ((i + j) & ll(1)) << "\t";
             }
-            if (mintemp > 0)
-            {
-                minheap.push(mintemp);
-            }
-            n--;
+            cout << endl;
         }
-        cout << maxcost << " " << mincost;
         cout << endl;
     }
     return 0;

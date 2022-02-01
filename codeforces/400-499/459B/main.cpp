@@ -54,23 +54,6 @@ double eps = 1e-12;
 #define all(x) (x).begin(), (x).end()
 #define sz(x) ((ll)(x).size())
 
-struct plane
-{
-    ll index;
-    ll seats;
-    plane(ll i, ll s)
-    {
-        index = i;
-        seats = s;
-    }
-};
-struct comp
-{
-    bool operator()(plane p1, plane p2)
-    {
-        return p1.seats > p2.seats;
-    }
-};
 int main()
 {
     fast_cin();
@@ -79,40 +62,46 @@ int main()
     for (auto __i = 0; __i < 2; __i++)
 #endif
     {
-        ll n, m, temp;
-        cin >> n >> m;
-
-        priority_queue<ll, vector<ll>, greater<ll>> minheap;
-        priority_queue<ll, vector<ll>> maxheap;
-        for (auto i = 0; i < m; i++)
+        ll n;
+        cin >> n;
+        // vector<ll> b;
+        unordered_map<ll, ll> m;
+        ll temp;
+        ll mi = LONG_LONG_MAX, ma = LONG_LONG_MIN;
+        for (auto i = 0; i < n; i++)
         {
             cin >> temp;
-            minheap.push(temp);
-            maxheap.push(temp);
+            if (temp < mi)
+            {
+                mi = temp;
+            }
+            if (temp > ma)
+            {
+                ma = temp;
+            }
+            m[temp]++; //.push_back(temp);
         }
-
-        auto mincost = 0, maxcost = 0;
-        while (n > 0)
+        ll diff = ma - mi;
+        ll ans = 0;
+        // for (auto i = 0; i < n; i++)
+        // {
+        //     for (auto j = i + 1; j < n; j++)
+        //     {
+        //         if (abs(b[i] - b[j]) == diff)
+        //         {
+        //             ans++;
+        //         }
+        //     }
+        // }
+        if (mi == ma)
         {
-            auto maxtemp = maxheap.top();
-            auto mintemp = minheap.top();
-            maxheap.pop();
-            minheap.pop();
-            maxcost += maxtemp;
-            mincost += mintemp;
-            maxtemp--;
-            mintemp--;
-            if (maxtemp > 0)
-            {
-                maxheap.push(maxtemp);
-            }
-            if (mintemp > 0)
-            {
-                minheap.push(mintemp);
-            }
-            n--;
+            cout << diff << " " << ((m[mi] * (m[ma] - 1)) / 2);
         }
-        cout << maxcost << " " << mincost;
+        else
+        {
+
+            cout << diff << " " << (m[mi] * m[ma]);
+        }
         cout << endl;
     }
     return 0;
