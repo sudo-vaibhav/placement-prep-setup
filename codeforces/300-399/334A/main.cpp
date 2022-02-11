@@ -111,44 +111,48 @@ void _print(map<T, V> v)
 
 void solve()
 {
-    ll n, m;
-    cin >> m;
+    ll n;
+    // n^2 + n/2 candies in total
 
-    n = m - 10;
-    if (n <= 0)
+    // 1,2,3,4..... 16 => 8*17 = 136
+    // 136/4 = 34 each
+    //
+    cin >> n;
+    ll c = 1;
+    vector<vector<ll>> candies(n);
+    for (auto i = 0; i < n; i++)
     {
-        cout << 0;
-        return;
+        // vector<ll> temp(n);
+        candies[i] = vector<ll>(n);
     }
-    if (n == 1)
+    for (auto i = 0; i < n; i++)
     {
-        cout << 4;
-        return;
+        for (auto j = 0; j < n; j++)
+        {
+            if (i % 2 == 0)
+                candies[j][i] = c;
+            else
+            {
+                candies[n - j - 1][i] = c;
+            }
+            c++;
+        }
     }
-    if (n >= 2 && n <= 9)
+    for (auto i : candies)
     {
-        cout << 4;
-        return;
+        for (auto j : i)
+        {
+            cout << j << " ";
+        }
+        cout << "\n";
     }
-    if (n == 10)
-    {
-        cout << 15;
-        return;
-    }
-    if (n == 11)
-    {
-        cout << 4;
-        return;
-    }
-
-    cout << 0;
 }
 int main()
 {
     fastio();
     // freopen("input.txt", "r", stdin); freopen("output.txt", "w", stdout);
 #ifndef ONLINE_JUDGE
-    for (auto __i = 0; __i < 3; __i++)
+    for (auto __i = 0; __i < 1; __i++)
 #endif
     {
         solve();

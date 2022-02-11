@@ -109,46 +109,42 @@ void _print(map<T, V> v)
     cerr << "]";
 }
 
+ll get_x(ll y, ll slope, ll yInter)
+{
+    dbg(y);
+    dbg(slope);
+    dbg(yInter);
+    return (y - yInter) / slope;
+}
+ll get_y(ll x, ll slope, ll yInter)
+{
+    return slope * x + yInter;
+}
 void solve()
 {
-    ll n, m;
-    cin >> m;
+    ll a, b;
+    cin >> a >> b;
+    auto slope = ((double)a / (double)b > 0.0) ? -1 : 1;
+    // dbg(slope);
+    auto temp = abs(a) + abs(b);
+    auto yInter = b > 0 ? temp : -temp;
 
-    n = m - 10;
-    if (n <= 0)
-    {
-        cout << 0;
-        return;
-    }
-    if (n == 1)
-    {
-        cout << 4;
-        return;
-    }
-    if (n >= 2 && n <= 9)
-    {
-        cout << 4;
-        return;
-    }
-    if (n == 10)
-    {
-        cout << 15;
-        return;
-    }
-    if (n == 11)
-    {
-        cout << 4;
-        return;
-    }
+    auto v = get_x(0, slope, yInter);
+    pair<ll, ll> p1 = {v, 0};
+    // cout << "0 " << v << " ";
+    v = get_y(0, slope, yInter);
+    pair<ll, ll> p2 = {0, v};
 
-    cout << 0;
+    cout << (p1.first < p2.first ? (to_string(p1.first) + " " + to_string(p1.second) + " " + to_string(p2.first) + " " + to_string(p2.second))
+                                 : (
+                                       to_string(p2.first) + " " + to_string(p2.second) + " " + to_string(p1.first) + " " + to_string(p1.second)));
 }
 int main()
 {
     fastio();
     // freopen("input.txt", "r", stdin); freopen("output.txt", "w", stdout);
 #ifndef ONLINE_JUDGE
-    for (auto __i = 0; __i < 3; __i++)
+    for (auto __i = 0; __i < 2; __i++)
 #endif
     {
         solve();
