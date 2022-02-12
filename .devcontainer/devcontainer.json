@@ -17,7 +17,9 @@
     "redhat.java",
     "ms-python.python",
     "hediet.vscode-drawio",
-    "aaron-bond.better-comments"
+    "aaron-bond.better-comments",
+    "GrapeCity.gc-excelviewer",
+    "GitHub.copilot"
   ]
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
