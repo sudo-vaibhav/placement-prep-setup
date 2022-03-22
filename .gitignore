@@ -7,4 +7,4 @@
 !.devcontainer
 !.vscode
 *.txt
-misc.cpp
+misc.*
