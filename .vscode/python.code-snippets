@@ -9,14 +9,11 @@
         "body": [
             "import os",
             "def solve():",
-            "\t$0",
-            "if 'APPDATA' in os.environ.keys() and 'codeforces' in os.environ.get('APPDATA'):",
+            "$0",
+            "t = int(input())",
+            "while t:",
+            "\tt-=1",
             "\tsolve()",
-            "else:",
-            "\tt = 3",
-            "\twhile t:",
-            "\t\tt-=1",
-            "\t\tsolve()",
         ],
         "description": "compi snippet in python for codeforces"
     }
