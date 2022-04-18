@@ -7,7 +7,11 @@
     "Print to console": {
         "prefix": "compy",
         "body": [
-            "import os",
+            "import sys",
+            "def dbg(*args, **kwargs):",
+            "\treturn",
+            "\tprint(*args, file=sys.stderr, **kwargs)",
+            "\n",
             "def solve():",
             "$0",
             "t = int(input())",

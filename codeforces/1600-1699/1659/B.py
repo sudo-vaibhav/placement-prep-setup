@@ -1,4 +1,3 @@
-import os
 def solve():
     n,k = map(int,input().split())
     K = k
