@@ -9,21 +9,6 @@ def solve():
     if ("B" not in s) or (len(s)<2) or (s.count("A")<s.count("B")) or (s[-1]!="B"):
         print("NO")
         return
-    # if ("B" not in s) or len(s)<2:
-    #     print("NO")
-    #     return
-    # S = s.split("B")
-    # # if "".count
-    # dbg(S)
-    # for i in range(len(s)):
-    #     if i==0:
-    #         if s[i]=="B":
-    #             print("NO")
-    #             return
-    #     else:
-    #         if s[i]=="B" and s[i-1]=="B":
-    #             print("NO")
-    #             return
     
     ac,bc = 0,0
     for i in range(len(s)):

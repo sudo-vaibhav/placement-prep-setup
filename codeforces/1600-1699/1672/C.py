@@ -8,7 +8,6 @@ def dbg(*args, **kwargs):
 def solve():
     n = int(input())
     a = list(map(int,input().split()))
-    ans = 0
     cases = 0
     first = inf
     last = inf
