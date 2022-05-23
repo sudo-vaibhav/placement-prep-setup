@@ -10,56 +10,56 @@ def dbg(*args, **kwargs):
 
 def solve():
     n,m = map(int,input().split())
-    a = list(map(int,input().split()))
-    b = list(map(int,input().split()))
-    aMin = min(a)
-    bMax = max(b)
+    A = list(map(int,input().split()))
+    B = list(map(int,input().split()))
+    AMin = min(A)
+    BMax = max(B)
     
-    if aMin>=bMax:
-        print(0)
+    if AMin>=BMax:
+        print(0) # no need to do any changes
     else:
         # tipping point must be estimated now for min of a
-        l = aMin
-        r = bMax
+        l = AMin
+        r = BMax
         ans = inf
         
-        def bringDown(arr,pt):
+        def costToBringBValsDown(pt):
             ans = 0
-            for e in arr:
+            for e in B:
                 if e>pt:
                     ans += e-pt
             return ans
         
-        def takeUp(arr,pt):
+        def costToTakeAValsUp(pt):
             ans = 0
-            for e in arr:
+            for e in A:
                 if e<pt:
                     ans += pt-e
             return ans
         while l<=r:
-            m1 = l+(r-l)//3
-            m2 = r-(r-l)//3
             
+            m1 = l+(r-l)//3 # guess 1
+            m2 = r-(r-l)//3 # guess 2
             
-            
-            red1 = bringDown(b,m1)
-            inc1 = takeUp(a,m1)
-            
-            red2 = bringDown(b,m2)
-            inc2 = takeUp(a,m2)
-            
-            
+            red1 = costToBringBValsDown(m1)
+            inc1 = costToTakeAValsUp(m1)
+            # cost of guess 1
             tot1 = red1 + inc1
+            
+            red2 = costToBringBValsDown(m2)
+            inc2 = costToTakeAValsUp(m2)
+            # cost of guess 2            
             tot2 = red2 + inc2
             
             ans = min(ans,tot1,tot2)
             
             if tot1<tot2:
-                r = m2-1
+                r = m2-1 # because now answer cannot possibly lie in [m2,r]
             elif tot1>tot2:
-                l = m1+1
+                l = m1+1 # because now answer cannot possibly lie in [l,m1]
             else:
-                l = m1+1
+                # now answer has to lie within [m1+1,m2-1]
+                l = m1+1 
                 r = m2-1
             
         print(ans)
