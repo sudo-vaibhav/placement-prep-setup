@@ -11,7 +11,7 @@
             "import os",
             "working_directory = os.getcwd()",
             "def dbg(*args, **kwargs):",
-            "\tif('Vaibhav' not in working_directory):",
+            "\tif('plac' not in working_directory):",
             "\t\treturn",
             "\tprint(*args, file=sys.stderr, **kwargs)",
             "\n",

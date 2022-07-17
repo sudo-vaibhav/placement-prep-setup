@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.util.*;
 import static java.lang.Math.*;
 
-public class Solution implements Runnable {
+class Codechef implements Runnable {
 
     BufferedReader in;
     PrintWriter out;
@@ -34,7 +34,7 @@ public class Solution implements Runnable {
     }
 
     public static void main(String[] args) {
-        new Thread(null, new Solution(), "", 256 * (1L << 20)).start();
+        new Thread(null, new Codechef(), "", 256 * (1L << 20)).start();
     }
 
     String readString() throws IOException {
@@ -59,32 +59,57 @@ public class Solution implements Runnable {
         return Double.parseDouble(readString());
     }
 
+    boolean solve(String string) {
+        if (string.length() == 0) {
+            return true;
+        }
+        if (string.length() % 2 == 1) {
+            return false;
+        }
+
+        int mid = string.length() / 2;
+
+        if (!string.substring(0, mid).equals(string.substring(mid))) {
+
+            return false;
+        }
+
+        return solve(string.substring(0, mid - 1));
+    }
+
     void solve() throws IOException {
-        int n = readInt(), m = readInt();
-        var alive = new TreeSet<Integer>();
-        for (int i = 1; i <= n; i++) {
-            alive.add(i);
-        }
-        var ans = new int[n]; // 0
-        while (m > 0) {
-            var toKill = new HashSet<Integer>();
-            int l = readInt(), r = readInt(), w = readInt();
-            var sub = alive.subSet(l, r + 1); // 1 2 3 4 5 (2,5) => (2,6)
-            for (var knight : sub) {
-                if (knight != w) {
-                    toKill.add(knight);
-                }
+        int t = readInt();
+        while (t-- > 0) {
+
+            int n = readInt();
+            String s = readString();
+            String firstOp = "double";
+            if (n == 1) {
+
+                System.out.println("YES");
+                return;
             }
-            for (var killed : toKill) {
-                ans[killed - 1] = w;
-                alive.remove(killed);
+
+            if (n % 2 == 1) {
+                firstOp = "add";
             }
-            m--;
+
+            // def solve(string):
+
+            boolean res;
+            if (firstOp.equals("double")) {
+                res = solve(s);
+            } else {
+                res = solve(s.substring(0, n - 1));
+            }
+
+            if (res) {
+                System.out.println("YES");
+            } else {
+
+                System.out.println("NO");
+            }
         }
-        for (var x : ans) {
-            System.out.print(x + " ");
-        }
-        // sc.close();
     }
 }
 
@@ -106,7 +131,7 @@ class ST {
     public ArrayList<Node> st;
 
     Node merge(Node n1, Node n2) {
-        var temp = new Node();
+        Node temp = new Node();
         for (int i = 0; i < 26; i++) {
             temp.counts[i] = n1.counts[i] + n2.counts[i];
         }

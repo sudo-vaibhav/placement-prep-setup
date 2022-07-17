@@ -1,6 +1,6 @@
 {
-  "code-builder.build.inputFilePath": "/workspaces/placement-prep-setup/input.txt",
-  "code-builder.build.outputFilePath": "/workspaces/placement-prep-setup/output.txt",
+  "code-builder.build.inputFilePath": "c:\\Users\\Vaibhav\\code\\placement-prep-setup\\input.txt",
+  "code-builder.build.outputFilePath": "c:\\Users\\Vaibhav\\code\\placement-prep-setup\\output.txt",
   "files.associations": {
     "istream": "cpp",
     "iosfwd": "cpp",
